@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_product_list_template" name="report_product_list_template">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <div style="text-align: center;">
+                      <img t-attf-src="/product_list_report/static/description/luki.png" style="max-height: 100px;" />
+                    <!--<t t-if="company.logo">
+                         <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                     </t>-->
+                </div>
+                <div style="margin-top: 20px;">
+                    <h2 style="text-align: left;"><t t-esc="doc.report_name"/></h2>
+                </div>
+                <div style="margin-top: 20px;">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="product_prices" t-as="item">
+                                <tr>
+                                    <td><t t-esc="item.product.name"/></td>
+                                    <td><t t-esc="item.price"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

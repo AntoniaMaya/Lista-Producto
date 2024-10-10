@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report
+            id="report_product_list"
+            string="Reporte de Lista de Productos"
+            model="product.list.wizard"
+            report_type="qweb-pdf"
+            name="product_list_report.report_product_list_template"
+            file="product_list_report.report_product_list_template"
+            print_report_name="'Lista de Productos - %s' % (object.report_name)"
+        />
+    </data>
+
+    <template id="report_product_list_template">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <div style="text-align: center;">
+                   <t t-if="company.logo">
+                     <img t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 100px;"/>
+                    </t>
+
+                </div>
+                <div style="margin-top: 20px;">
+                    <h2 style="text-align: left;"><t t-esc="doc.report_name"/></h2>
+                </div>
+                <div style="margin-top: 20px;">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="product_prices" t-as="item">
+                                <tr>
+                                    <td><t t-esc="item['product']['name']"/></td>
+                                    <td><t t-esc="item['price']"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
